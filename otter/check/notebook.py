@@ -288,7 +288,6 @@ class Notebook(Loggable):
 
         return LoggedEventReturnValue(result, question=question, shelve_env=global_env)
 
-    @incompatible_with(IPythonInterpreter.COLAB)
     def run_plugin(
         self,
         plugin_name: str,
@@ -318,7 +317,6 @@ class Notebook(Loggable):
         pc.run("from_notebook", *args, **kwargs)
 
     @grading_mode_disabled
-    @incompatible_with(IPythonInterpreter.COLAB)
     @logs_event(EventType.TO_PDF)
     def to_pdf(
         self,
@@ -368,7 +366,6 @@ class Notebook(Loggable):
             display(HTML(out_html))
 
     @grading_mode_disabled
-    @incompatible_with(IPythonInterpreter.COLAB)
     def add_plugin_files(
         self,
         plugin_name: str,
@@ -399,7 +396,6 @@ class Notebook(Loggable):
         self._addl_files.extend(addl_files)
 
     @grading_mode_disabled
-    @incompatible_with(IPythonInterpreter.COLAB)
     @logs_event(EventType.END_EXPORT)
     def export(
         self,
