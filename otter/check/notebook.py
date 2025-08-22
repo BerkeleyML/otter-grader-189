@@ -103,9 +103,6 @@ class Notebook(Loggable):
 
         self.interpreter = interpreter
 
-        if self.interpreter is IPythonInterpreter.COLAB and not os.path.isdir(tests_dir):
-            raise ValueError(f"Tests directory {tests_dir} does not exist")
-
         cls = type(self)
         if cls._tests_dir_override is not None:
             self._tests_dir = cls._tests_dir_override
@@ -262,10 +259,6 @@ class Notebook(Loggable):
 
         self._logger.debug(f"Resolved test path: {test_path}")
         self._logger.debug(f"Resolved test name: {test_name}")
-
-        # raise an error for a metadata test on Colab
-        if test_name is not None and self.interpreter is IPythonInterpreter.COLAB:
-            raise ValueError(f"Test {question} does not exist")
 
         # ensure that desired test exists
         if not os.path.isfile(test_path):
