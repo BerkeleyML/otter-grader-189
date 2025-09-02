@@ -24,6 +24,7 @@ echo "export PATH=/root/miniforge3/bin:\$PATH" >> /root/.bashrc
 
 export PATH=/root/miniforge3/bin:$PATH
 export TAR="/bin/tar"
+export IS_GRADING_ENV=true
 
 # install dependencies with mamba
 mamba env create -f {{ autograder_dir }}/source/environment.yml
